@@ -12,6 +12,7 @@
 <body>
   <div class="hero hero-bg is-fullheight">
     <header class="hero-head">
+      <a class="button is-info skipped" href="#about">Skip to content</a>
       <div class="navbar">
         <div class="container">
           <div class="navbar-brand">
@@ -63,8 +64,7 @@
           </nav>
         </div>
       </div>
-    </header>
-
+    </header>    
     <section class="hero-body" aria-labelledby="engineering">
       <div class="container has-text-centered">
         <div class="column is-6 is-offset-3">
@@ -86,14 +86,19 @@
         </div>
       </div>
     </section>
-
     <div class="box cta" role="complementary" aria-label="Headless CMS">
       <div class="has-text-centered">
         <span class="tag is-primary">New</span> Headless CMS improves customer experience and offers greater flexibility
       </div>
     </div>
   </div>
-
+  <nav class="breadcrumb is-centered" id="breadcrumb-navigation" aria-label="breadcrumb navigation">
+    <ul>
+      <li><a href="#"></a>Pre previous page</li>
+      <li><a href="#"></a>Previous page</li>
+      <li><a href="" aria-current="page">Current page</a></li>
+    </ul>
+  </nav>
   <section class="section" id="about" aria-labelledby="about-us">
     <div class="section-heading has-text-centered">
       <h2 class="title is-2" id="about-us">About Us</h2>
@@ -255,7 +260,7 @@
     </div>
   </aside>
 
-  <section class="hero has-background-grey-light" aria-labelledby="key-features">
+  <section class="hero has-background-grey-light" id="key-features-section" aria-labelledby="key-features">
     <div class="container features">
       <div class="section-heading has-text-centered">
         <h2 class="title is-2" id="key-features">Three key features</h2>
@@ -312,7 +317,7 @@
     </div>
   </section>
 
-  <section class="hero is-info" aria-labelledby="topic-list">
+  <section class="hero is-info" id="topic-list-section" aria-labelledby="topic-list">
     <div class="hero-body">
       <div class="container">
         <h2 class="title" id="topic-list">List of topics</h2>
@@ -471,8 +476,20 @@
       <div class="columns is-centered">
         <div class="column is-three-quarters">
           <div class="title has-text-centered">Inspired video</div>
+          <a href="#video-transcript" class="skipped">Embeded video, press enter to go the the transcript</a>
           <div class="embed-container image">
             <iframe src="https://player.vimeo.com/video/261794608" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+          </div>
+          <div id="video-transcript" aria-label="Inspired video transcript">
+              There are many variations of passages of Lorem Ipsum available, but the majority have 
+              suffered alteration in some form, by injected humour, or randomised words which don't 
+              look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need 
+              to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem 
+              Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making 
+              this the first true generator on the Internet. It uses a dictionary of over 200 Latin 
+              words, combined with a handful of model sentence structures, to generate Lorem Ipsum 
+              which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, 
+              injected humour, or non-characteristic words etc.
           </div>
         </div>
       </div>

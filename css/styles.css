@@ -187,6 +187,27 @@ a {
   border: 0;
 }
 
+.skipped {
+  position: absolute;
+  z-index: 20;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+}
+
+.skipped:focus {
+  height: auto;
+  width: auto;
+  clip: auto; 
+}
+
+.embed-container.skipped:focus {
+  background: #fff;
+}
+
 a:focus,
 a:active,
 input:focus,
