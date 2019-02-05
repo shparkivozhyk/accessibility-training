@@ -129,6 +129,63 @@
   margin-bottom: .5rem;
 }
 
+a {
+  color: #2662c1;
+  font-weight: bold;
+}
+
+.button.is-info {
+  background-color: #356b8e;
+}
+
+.tag:not(body).is-primary {
+  background-color: #1a8475;
+}
+
+.tag:not(body).is-danger {
+  background-color: #e20b36;
+}
+
+.tag:not(body).is-success {
+  background-color: #0b8235;
+}
+.subtitle {
+  color: #171717;
+}
+
+.hero.is-info {
+  background-color: #0777c1;
+}
+
+.hero.is-info .subtitle {
+  color: #ffffff;
+}
+
+.hero.is-info .tabs.is-boxed li.is-active a {
+  color: #116ba7;
+}
+
+.has-text-grey-light {
+  color: #6b6969!important;
+}
+
+.help.is-success {
+  color: #066f2b;
+}
+
+.help.is-danger {
+  color: #d2062f;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+}
 
 @media screen and (max-width: 1087px) {
   .navbar-menu {
