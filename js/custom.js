@@ -36,3 +36,9 @@ function toggleTab(selectedNav, targetId) {
     }
   });
 }
+
+var randomNumberField = document.getElementById("randomNumberField");
+
+setInterval(function () {
+  randomNumberField.innerHTML = Math.random();
+}, 5000);

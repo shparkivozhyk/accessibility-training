@@ -10,8 +10,8 @@
 </head>
 
 <body>
-  <div class="hero hero-bg is-fullheight">
-    <header class="hero-head">
+  <header class="hero hero-bg is-fullheight">
+    <div class="hero-head">
       <a class="button is-info skipped" href="#main">Skip to content</a>
       <div class="navbar">
         <div class="container">
@@ -19,7 +19,7 @@
             <a class="navbar-item has-text-white" tabindex="0" href="/">
               <img src="https://www.epam.com/content/dam/epam/global/logo_white-blue.svg" alt="Epam logo" style="width: 100%;">
             </a>
-            <span class="navbar-burger burger" data-target="navbarMenu">
+            <span class="navbar-burger burger" data-target="navbarMenu" aria-haspopup="true" aria-controls="navbarMenu">
               <span></span>
               <span></span>
               <span></span>
@@ -64,7 +64,7 @@
           </nav>
         </div>
       </div>
-    </header>    
+    </div>    
     <section class="hero-body" aria-labelledby="engineering">
       <div class="container has-text-centered">
         <div class="column is-6 is-offset-3">
@@ -91,7 +91,7 @@
         <span class="tag is-primary">New</span> Headless CMS improves customer experience and offers greater flexibility
       </div>
     </div>
-  </div>
+  </header>
   <main id="main">
   <nav class="breadcrumb is-centered" id="breadcrumb-navigation" aria-label="breadcrumb navigation">
     <ul>
@@ -355,8 +355,8 @@
     </div>
   </section>
 
-  <div class="tab-content container">
-    <div class="tab-pane" id="pane-1" class="level">
+  <div class="tab-content container" role="tablist">
+    <div class="tab-pane" id="pane-1" class="level" role="tab" aria-selected="false">
       <div class="container">
         <div class="columns features">
           <div class="column is-4">
@@ -412,7 +412,7 @@
       </div>
     </div>
 
-    <div class="tab-pane" id="pane-3">
+    <div class="tab-pane" id="pane-3"  role="tab" aria-selected="false">
       <div class="columns medias">
         <div class="column">
           <div class="media">
@@ -473,7 +473,7 @@
       </div>
     </div>
 
-    <div class="tab-pane" id="pane-4">
+    <div class="tab-pane" id="pane-4"  role="tab" aria-selected="false">
       <div class="columns is-centered">
         <div class="column is-three-quarters">
           <div class="title has-text-centered">Inspired video</div>
@@ -496,11 +496,11 @@
       </div>
     </div>
 
-    <div class="tab-pane is-active" id="pane-2">
-      <article class="content" aria-labelledby="article-title">
+    <div class="tab-pane is-active" id="pane-2" role="tab" aria-selected="true">
+      <article class="content" aria-labelledby="article-title" aria-describedby="article-description">
         <h1 class="is-1 title" id="article-title">Hello World</h1>
         <p>Lorem ipsum<sup><a tabindex="0" href="/wiki">[1]</a></sup> dolor sit amet, consectetur adipiscing elit. Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum mattis neque. Sub<sub>script</sub> works as well!</p>
-        <h2 class="is-2 title">Second level</h2>
+        <h2 class="is-2 title" id="article-description">Second level</h2>
         <p>Curabitur accumsan turpis pharetra <b>augue tincidunt</b> blandit. Quisque condimentum maximus mi, sit amet commodo arcu rutrum id. Proin pretium urna vel cursus venenatis. Suspendisse potenti. Etiam mattis sem rhoncus lacus dapibus facilisis. Donec at dignissim dui. Ut et neque nisl.</p>
         <ul>
           <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>
@@ -1135,7 +1135,13 @@
       </form>
     </div>
   </section>
-
+  <section class="section" aria-labelledby="live-region-title" aria-describedby="livi-region-description">
+    <div class="container has-text-centered">
+        <h3 class="title is-size-3" id="live-region-title">Live region</h3>
+        <h4 class="title is-size-4" id="live-region-description">Shows random number every 5 seconds</h4>
+        <p id="randomNumberField" aria-live="assertive" aria-label="new random number is"></p>
+    </div>
+  </section>
   <section class="section" aria-label="techniques">
     <div class="container">
       <div class="columns is-multiline">
@@ -1285,7 +1291,7 @@
       </nav>
     </div>
   </div>
-  <div id="modal-card" class="modal modal-fx-3dSlit">
+  <div id="modal-card" class="modal modal-fx-3dSlit" role="dialog" aria-label="Aerostats" aria-describedby="aerostats-content">
     <div class="modal-background"></div>
     <div class="modal-content is-tiny">
       <div class="card">
@@ -1306,7 +1312,7 @@
               <div class="subtitle is-6">@jane_doe</div>
             </div>
           </div>
-          <div class="content">
+          <div class="content" id="aerostats-content">
             Laum Ipsum junkah potatoes bookin' it. Moosetown rig up I'm tellin' you way up north bookin' it can't get theyah from heeyah native bean suppah whawf Powrtland Museum of Aht, back woods hawsun around the pit mummah Yessah, mummah muckle riyht on'ta her
             Bean's dinnahbucket bub geez bud sumpin' fierce ayuhpawt Bangah naw, Powrtland Museum of Aht down cellah sumpin' fierce hoppa bub If you can't stand the wintah you don't deserve the summah slower than molasses going uphill in January.
             Sgn'wahl shoggor hrii uaaah R'lyeh uh'e k'yarnak Hastur hupadgh li'hee, hai f'nilgh'ri nilgh'ri n'ghftor ngftaghu vulgtlagln h'hrii throd Nyarlathotep lloig, naflsll'ha nnnsll'ha athg y-ebunma goka chtenff ehyeog cehye. Zhro y'hah
@@ -1323,7 +1329,7 @@
     <button class="modal-close is-large"></button>
   </div>
 
-  <div id="modal-image1" class="modal modal-fx-3dSlit">
+  <div id="modal-image1" class="modal modal-fx-3dSlit" role="dialog" aria-label="A photo of train">
     <div class="modal-background"></div>
     <div class="modal-content is-huge is-image">
       <img src="https://images.unsplash.com/photo-1532673492-1b3cdb05d51b" alt="A photo of a train">
@@ -1331,7 +1337,7 @@
     <button class="modal-close is-large"></button>
   </div>
 
-  <div id="modal-image2" class="modal modal-fx-superScaled">
+  <div id="modal-image2" class="modal modal-fx-superScaled" role="dialog" aria-label="A photo of a crosswalk">
     <div class="modal-background"></div>
     <div class="modal-content  is-image">
       <img src="https://images.unsplash.com/photo-1542813302-96ce645d6e30" alt="A photo of a crosswalk">
