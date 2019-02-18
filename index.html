@@ -19,48 +19,48 @@
             <a class="navbar-item has-text-white" tabindex="0" href="/">
               <img src="https://www.epam.com/content/dam/epam/global/logo_white-blue.svg" alt="Epam logo" style="width: 100%;">
             </a>
-            <span class="navbar-burger burger" data-target="navbarMenu" aria-haspopup="true" aria-controls="navbarMenu">
+            <span class="navbar-burger burger" data-target="navbarMenu" aria-controls="navbarMenu" tabindex="0">
               <span></span>
               <span></span>
               <span></span>
             </span>
           </div>
 
-          <nav id="navbarMenu" class="navbar-menu">
-            <div class="navbar-end">
-              <span class="navbar-item">
+          <nav id="navbarMenu" class="navbar-menu" aria-label="Main navigation menu">
+            <ul class="navbar-end">
+              <li class="navbar-item">
                 <a class="button is-white is-outlined" tabindex="0">
                   <span class="icon">
                     <i class="fa fa-home"></i>
                   </span>
                   <span>Home</span>
                 </a>
-              </span>
-              <span class="navbar-item">
+              </li>
+              <li class="navbar-item">
                 <a class="button is-white is-outlined" tabindex="0">
                   <span class="icon">
                     <i class="fab fa-superpowers"></i>
                   </span>
                   <span>Examples</span>
                 </a>
-              </span>
-              <span class="navbar-item">
+              </li>
+              <li class="navbar-item">
                 <a class="button is-white is-outlined" tabindex="0" href="/documentation">
                   <span class="icon">
                     <i class="fa fa-book"></i>
                   </span>
                   <span>Documentation</span>
                 </a>
-              </span>
-              <span class="navbar-item">
+              </li>
+              <li class="navbar-item">
                 <a class="button is-white is-outlined" tabindex="0" href="/github">
                   <span class="icon">
                     <i class="fab fa-github"></i>
                   </span>
                   <span>View Source</span>
                 </a>
-              </span>
-            </div>
+              </li>
+            </ul>
           </nav>
         </div>
       </div>
@@ -326,37 +326,37 @@
       </div>
     </div>
     <div class="tabs is-boxed is-centered main-menu" id="nav">
-      <ul>
-        <li data-target="pane-1" id="1">
-          <button tabindex="0" class="button is-info is-boxed">
+      <ul role="tablist" id="topic-tablist">
+        <li data-target="pane-1" id="1"  class="pane-1" role="tab" tabindex="-1" aria-controls="pane-1">
+          <a class="button is-info is-boxed" tabindex="-1" role="presentation">
             <span class="icon is-small"><i class="fa fa-image"></i></span>
             <span>Pictures</span>
-          </button>
+          </a>
         </li>
-        <li data-target="pane-2" id="2" class="is-active">
-          <button tabindex="0" class="button is-info is-boxed">
+        <li data-target="pane-2" id="2" class="pane-2 is-active" role="tab" tabindex="0" aria-controls="pane-2">
+          <a class="button is-info is-boxed" tabindex="-1" role="presentation">
             <span class="icon is-small"><i class="fab fa-empire"></i></span>
             <span>Article</span>
-          </button>
+          </a>
         </li>
-        <li data-target="pane-3" id="3">
-          <button tabindex="0" class="button is-info is-boxed">
+        <li data-target="pane-3" id="3" class="pane-3" role="tab" tabindex="-1" aria-controls="pane-3">
+          <a class="button is-info is-boxed" tabindex="-1" role="presentation">
             <span class="icon is-small"><i class="fab fa-superpowers"></i></span>
             <span>Team</span>
-          </button>
+          </a>
         </li>
-        <li data-target="pane-4" id="4">
-          <button tabindex="0" class="button is-info is-boxed">
+        <li data-target="pane-4" id="4" class="pane-4" role="tab" tabindex="-1" aria-controls="pane-4">
+          <a class="button is-info is-boxed" tabindex="-1" role="presentation">
             <span class="icon is-small"><i class="fa fa-film"></i></span>
             <span>Video</span>
-          </button>
+          </a>
         </li>
       </ul>
     </div>
   </section>
 
-  <div class="tab-content container" role="tablist">
-    <div class="tab-pane" id="pane-1" class="level" role="tab" aria-selected="false">
+  <div class="tab-content container">
+    <div class="tab-pane" id="pane-1" class="level" role="tabpanel" aria-labelledby="1" aria-selected="false" hidden>
       <div class="container">
         <div class="columns features">
           <div class="column is-4">
@@ -412,7 +412,7 @@
       </div>
     </div>
 
-    <div class="tab-pane" id="pane-3"  role="tab" aria-selected="false">
+    <div class="tab-pane" id="pane-3"  role="tabpanel" aria-labelledby="3" aria-selected="false" hidden>
       <div class="columns medias">
         <div class="column">
           <div class="media">
@@ -473,7 +473,7 @@
       </div>
     </div>
 
-    <div class="tab-pane" id="pane-4"  role="tab" aria-selected="false">
+    <div class="tab-pane" id="pane-4"  role="tabpanel" aria-labelledby="4" aria-selected="false" hidden>
       <div class="columns is-centered">
         <div class="column is-three-quarters">
           <div class="title has-text-centered">Inspired video</div>
@@ -496,7 +496,7 @@
       </div>
     </div>
 
-    <div class="tab-pane is-active" id="pane-2" role="tab" aria-selected="true">
+    <div class="tab-pane is-active" id="pane-2" role="tabpanel" aria-labelledby="2" aria-selected="true" hidden>
       <article class="content" aria-labelledby="article-title" aria-describedby="article-description">
         <h1 class="is-1 title" id="article-title">Hello World</h1>
         <p>Lorem ipsum<sup><a tabindex="0" href="/wiki">[1]</a></sup> dolor sit amet, consectetur adipiscing elit. Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum mattis neque. Sub<sub>script</sub> works as well!</p>
@@ -1135,7 +1135,7 @@
       </form>
     </div>
   </section>
-  <section class="section" aria-labelledby="live-region-title" aria-describedby="livi-region-description">
+  <section class="section" aria-labelledby="live-region-title" aria-describedby="live-region-description">
     <div class="container has-text-centered">
         <h3 class="title is-size-3" id="live-region-title">Live region</h3>
         <h4 class="title is-size-4" id="live-region-description">Shows random number every 5 seconds</h4>

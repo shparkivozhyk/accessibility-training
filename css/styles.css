@@ -219,8 +219,18 @@ button:active,
 select:focus,
 select:active,
 textarea:focus,
-textarea:active {
+textarea:active,
+.is-active:focus,
+.is-active:active {
   outline: 2px solid #000 !important;
+}
+
+.is-active:focus .button,
+.is-active:active .button {
+    outline-style: solid;
+    outline-color: #000;
+    outline-width: 2px;
+    outline-offset: -2px;
 }
 
 .button.card-footer-item {
