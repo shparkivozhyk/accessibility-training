@@ -70,7 +70,7 @@ setInterval(function () {
 
 
 document.getElementById("topic-tablist").addEventListener("keyup", function (e) {
-  if (e.keyCode !== 37 && e.keyCode !== 39) {
+  if (e.keyCode !== 35 && e.keyCode !== 36 && e.keyCode !== 37 && e.keyCode !== 39) {
     return;
   }
   var target = e.target.getAttribute("data-target");
@@ -91,6 +91,16 @@ document.getElementById("topic-tablist").addEventListener("keyup", function (e) 
       nextTargetNumber = 4;
       nextTab = document.getElementById("4");
     }
+  }
+
+  if (e.keyCode === 35) {
+    var nextTargetNumber = 4;
+    nextTab = document.getElementById("4");
+  }
+
+  if (e.keyCode === 36) {
+    var nextTargetNumber = 1;
+    nextTab = document.getElementById("1");
   }
 
   var currentTabPanel = document.getElementById("pane-" + targetNumber);
