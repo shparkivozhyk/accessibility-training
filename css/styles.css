@@ -239,6 +239,22 @@ textarea:active,
   font-weight: bold;
 }
 
+.contact-us-form fieldset {
+  padding: 20px;
+}
+
+.help {
+  display: none;
+}
+
+.invalid-field .help {
+  display: block;
+}
+
+.invalid-field input {
+  border-color: #d2062f;
+}
+
 @media screen and (max-width: 1087px) {
   .navbar-menu {
     background-color: #888;

@@ -60,6 +60,11 @@
                   <span>View Source</span>
                 </a>
               </li>
+              <li class="navbar-item">
+                <a class="button is-white is-outlined" tabindex="0" href="#contact-us">
+                  <span>Contact us</span>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
@@ -1047,90 +1052,82 @@
         <h3 class="subtitle is-5">Don't hesitate, ask anything</h3>
       </div>
 
-      <form class="column is-half is-offset-one-quarter box" aria-label="Contact us form">
-        <div class="field">
-          <label for="name" class="label">Name</label>
-          <div class="control">
-            <input class="input" id="name" type="text" placeholder="Text input">
-          </div>
+      <form action="post" class="column is-half is-offset-one-quarter box contact-us-form" aria-labelledby="contact-us">
+        <div class="error-messages-block message is-danger visually-hidden" tabindex="-1">
+            <h3 class="message-header">Error! The form could not be submitted due to invalid entries</h3>
+            <p>Please, fix the following fields</p>
+            
+            <ol class="error-messages message-body"></ol>
         </div>
-
-        <div class="field">
-          <label for="user-name" class="label">Username</label>
-          <div class="control has-icons-left has-icons-right">
-            <input class="input is-success" id="user-name" type="text">
-            <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
-            </span>
-            <span class="icon is-small is-right">
-              <i class="fas fa-check"></i>
-            </span>
-          </div>
-          <p class="help is-success">This username is available</p>
-        </div>
-
-        <div class="field">
-          <label class="label" for="user-email">Email</label>
-          <div class="control has-icons-left has-icons-right">
-            <input class="input is-danger" id="user-email" type="email" placeholder="Email input" value="hello@">
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-            <span class="icon is-small is-right">
-              <i class="fas fa-exclamation-triangle"></i>
-            </span>
-          </div>
-          <p class="help is-danger">This email is invalid</p>
-        </div>
-
-        <div class="field">
-          <label class="label" for="select-dropdown">Subject</label>
-          <div class="control">
-            <div class="select">
-              <select id="select-dropdown">
-                <option>Select dropdown</option>
-                <option>With options</option>
-              </select>
+        
+        <fieldset>
+          <legend>Your details</legend>
+          <div class="field">
+            <label for="user-name" class="label">Username</label>
+            <div class="control">
+              <input class="input" id="user-name" name="user-name" type="text" placeholder="Username" required>
             </div>
+            <p class="help is-danger" id="user-name-help">Please, fill in your username</p>
           </div>
-        </div>
 
-        <div class="field">
-          <label class="label" for="message">Message</label>
-          <div class="control">
-            <textarea class="textarea" id="message" placeholder="Textarea"></textarea>
+          <div class="field">
+            <label for="first-name" class="label">First Name</label>
+            <div class="control">
+              <input class="input" id="first-name" name="first-name" type="text" placeholder="First name" required>
+            </div>
+            <p class="help is-danger" id="first-name-help">Please, fill in first name</p>
           </div>
-        </div>
 
-        <div class="field">
-          <div class="control">
-            <label class="checkbox">
-              <input type="checkbox">
-              I agree to the <a tabindex="0" href="/terms-and-conditions">terms and conditions</a>
-            </label>
+          <div class="field">
+              <label for="last-name" class="label">Last Name</label>
+              <div class="control">
+                <input class="input" id="last-name" name="last-name" type="text" placeholder="Last name" required>
+              </div>
+              <p class="help is-danger" id="last-name-help">Please, fill in last name</p>
           </div>
-        </div>
 
-        <fieldset class="field" aria-label="Question radio buttons" role="group">
-          <div class="control">
-            <label class="radio">
-              <input type="radio" name="question">
-              Yes
-            </label>
-            <label class="radio">
-              <input type="radio" name="question">
-              No
-            </label>
+          <div class="field">
+              <label for="phone-number" class="label">Phone number</label>
+              <div class="control">
+                <input class="input" id="phone-number" name="phone-number" type="text" placeholder="Phone number" required>
+              </div>
+              <p class="help is-danger" id="phone-number-help">Please, fill in phone number</p>
           </div>
+          
+          <div class="field">
+              <label for="zip-code" class="label">Zip code</label>
+              <div class="control">
+                <input class="input" id="zip-code" name="zip-code" type="text" placeholder="Zip code">
+              </div>
+          </div>
+
+          <div class="field">
+              <label for="user-address" class="label">Address</label>
+              <div class="control">
+                <input class="input" id="user-address" name="user-address" type="text" placeholder="Address" required>
+              </div>
+              <p class="help is-danger" id="user-address-help">Please, fill in address</p>
+          </div>
+
+          <div class="field">
+              <label for="birth-year" class="label">Birth year</label>
+              <div class="control">
+                <input class="input" id="birth-year" name="birth-year" type="text" placeholder="Birth year" disabled required>
+              </div>
+              <p class="help is-danger" id="birth-year-help">Please, fill in last name</p>
+          </div>
+
+          <div class="field">
+            <label class="label" for="user-email">Email</label>
+            <div class="control">
+              <input class="input" id="user-email" name="user-email" type="email" placeholder="Email input" required>
+            </div>
+            <p class="help is-danger" id="user-email-help">This email is invalid</p>
+          </div>
+ 
         </fieldset>
 
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">Submit</button>
-          </div>
-          <div class="control">
-            <button class="button is-link">Cancel</button>
-          </div>
+        <button class="button is-link js-submit-button">Submit</button>
         </div>
       </form>
     </div>

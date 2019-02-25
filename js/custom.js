@@ -117,3 +117,61 @@ document.getElementById("topic-tablist").addEventListener("keyup", function (e) 
   nextTabPanel.setAttribute("aria-selected", true);
   nextTab.focus(); 
 })
+
+var savedUsers = [];
+var formInputs = document.querySelectorAll(".contact-us-form input[required]:not([disabled])");
+var allInputsCollection = Array.prototype.slice.apply(document.querySelectorAll(".contact-us-form input"));
+var inputsCollection = Array.prototype.slice.apply(formInputs);
+var errorMessagesBlock = document.querySelector(".error-messages-block");
+var errorMessages = document.querySelector(".error-messages");
+document.querySelector(".js-submit-button").addEventListener("click", submitForm);
+
+function submitForm (e) {
+  e.preventDefault();
+
+  var userData = {};
+  var errors = '';
+  inputsCollection.forEach(function (input) {
+    var inputName = input.getAttribute("name");
+    var inputHelpId = inputName + "-help";
+    var inputHelp = document.getElementById(inputHelpId);
+    var inputHelpMessage = inputHelp.innerHTML;
+
+    if (!input.value) {
+      var errorMessage = `<li><a href="#${inputName}">${inputHelpMessage}</a></li>`;
+      errors += errorMessage;
+      processInvalidInputAttributes(input, inputHelpId);
+    } else {
+      processValidInputAttributes(input);
+      userData[inputName] = input.value;
+    }
+  })
+  
+  if (errors) {  
+    errorMessagesBlock.classList.remove("visually-hidden");
+    errorMessages.innerHTML = errors;
+    errorMessagesBlock.focus();
+  } else {
+    errorMessagesBlock.classList.add("visually-hidden");
+    savedUsers.push(userData);
+    clearInputs();
+  }
+}
+
+function processInvalidInputAttributes (input, inputHelpId) {
+  input.setAttribute("aria-describedby", inputHelpId);
+  input.setAttribute("aria-invalid", true);
+  input.parentNode.parentNode.classList.add("invalid-field");
+}
+
+function processValidInputAttributes (input) {
+  input.removeAttribute("aria-describedby");
+  input.removeAttribute("aria-invalid");
+  input.parentNode.parentNode.classList.remove("invalid-field");
+}
+
+function clearInputs () {
+  allInputsCollection.forEach(function (input) {
+    input.value = '';
+  })
+}
