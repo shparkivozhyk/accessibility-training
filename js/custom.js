@@ -64,9 +64,9 @@ function toggleTab(selectedNav, targetId) {
 
 var randomNumberField = document.getElementById("randomNumberField");
 
-// setInterval(function () {
-//   randomNumberField.innerHTML = Math.random();
-// }, 5000);
+setInterval(function () {
+  randomNumberField.innerHTML = Math.random();
+}, 5000);
 
 
 document.getElementById("topic-tablist").addEventListener("keyup", function (e) {
