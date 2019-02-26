@@ -118,13 +118,14 @@ document.getElementById("topic-tablist").addEventListener("keyup", function (e) 
   nextTab.focus(); 
 })
 
-// contact us form
+// Register my team form
 var savedUsers = [];
-var formInputs = document.querySelectorAll(".contact-us-form input[required]:not([disabled])");
+var formInputs = document.querySelectorAll(".contact-us-form input[aria-required]:not([disabled])");
 var allInputsCollection = Array.prototype.slice.apply(document.querySelectorAll(".contact-us-form input"));
 var inputsCollection = Array.prototype.slice.apply(formInputs);
 var errorMessagesBlock = document.querySelector(".error-messages-block");
 var errorMessages = document.querySelector(".error-messages");
+var successMessageBlock = document.querySelector(".success-message-block");
 var birthYearField = document.getElementById("birth-year");
 
 document.querySelector(".js-submit-button").addEventListener("click", submitForm);
@@ -134,33 +135,19 @@ function submitForm (e) {
 
   var userData = {};
   var errors = '';
-  inputsCollection.forEach(function (input) {
-    var inputName = input.getAttribute("name");
-    var inputHelpId = inputName + "-help";
-    var inputHelp = document.getElementById(inputHelpId);
-    var inputHelpMessage = inputHelp.innerHTML;
+  hideMessagesBlock();
 
-    // check fields
-    if (!input.value) {
-      var inputHelpMessage = input.placeholder;
-      var errorMessage = `<li><a href="#${inputName}">${inputHelpMessage}</a></li>`;
-      errors += errorMessage;
-      processInvalidInputAttributes(input, inputHelpId);
+  inputsCollection.forEach(function (input) {
+    var validationsResults = validateField(input);
+    if (validationsResults.error) {
+      errors += validationsResults.error;
     } else {
-      if (input.name === "user-name" && _.find(savedUsers, {"user-name": input.value})) {
-        inputHelpMessage = "This username is in use yet, please choose another username";
-        errorMessage = `<li><a href="#${inputName}">${inputHelpMessage}</a></li>`;
-        errors += errorMessage;
-        processInvalidInputAttributes(input, inputHelpId);
-      } else {
-        processValidInputAttributes(input);
-        userData[inputName] = input.value;
-      }
+      userData = _.assign(userData, validationsResults.user);
     }
   })
   
   if (errors) {  
-    errorMessagesBlock.classList.remove("visually-hidden");
+    errorMessagesBlock.classList.add("active-block");
     errorMessages.innerHTML = errors;
     errorMessagesBlock.focus();
   } else {
@@ -172,10 +159,55 @@ function submitForm (e) {
       birthYearField.focus();
       updateCollections();
     } else {
-      errorMessagesBlock.classList.add("visually-hidden");
+      successMessageBlock.classList.add("active-block");
       savedUsers.push(userData);
-      clearInputs();
+      clearInputs();  
     }
+  }
+}
+function validateField (input) {
+  var inputName = input.getAttribute("name");
+
+  if (!input.value) {
+    var inputHelpMessage = input.placeholder;
+    return processError(input, inputHelpMessage);
+  } 
+
+  if (input.name === "user-name" && _.find(savedUsers, {"user-name": input.value})) {
+    var inputHelpMessage = "This username is in use yet, please choose another username";
+    return processError(input, inputHelpMessage);
+  } 
+
+  if (input.name === "phone-number" && !/^[0-9]*$/.test(input.value)) {
+    var inputHelpMessage = "The phone number should contain numbers only";
+    return processError(input, inputHelpMessage);
+  }
+
+  if (input.name === "user-email" && !/[^@]+@[^\.]+\..+/g.test(input.value)) {
+    var inputHelpMessage ="The email should look like example@me.com";
+    return processError(input, inputHelpMessage);
+  }
+
+  if (input.name === "birth-year" && (!/^[0-9]*$/.test(input.value) || input.value.length !== 4)) {
+    var inputHelpMessage = "The birth year should be 4-digits number";
+    return processError(input, inputHelpMessage);
+  }
+  processValidInputAttributes(input);
+  return {
+    user: {
+      [inputName]: input.value
+    }
+  }
+}
+
+function processError (input, inputHelpMessage) {
+  var inputName = input.getAttribute("name");
+  var inputHelpId = inputName + "-help";
+  var error = `<li><a href="#${inputName}">${inputHelpMessage}</a></li>`;
+
+  processInvalidInputAttributes(input, inputHelpId);
+  return {
+    error: error
   }
 }
 
@@ -199,7 +231,12 @@ function clearInputs () {
   updateCollections();
 }
 
+function hideMessagesBlock ()  {
+  successMessageBlock.classList.remove("active-block");
+  errorMessagesBlock.classList.remove("active-block");
+}
+
 function updateCollections () {
-  formInputs = document.querySelectorAll(".contact-us-form input[required]:not([disabled])");
+  formInputs = document.querySelectorAll(".contact-us-form input[aria-required]:not([disabled])");
   inputsCollection = Array.prototype.slice.apply(formInputs);
 }

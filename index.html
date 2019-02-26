@@ -12,7 +12,7 @@
 <body>
   <header class="hero hero-bg is-fullheight">
     <div class="hero-head">
-      <a class="button is-info skipped" href="#main">Skip to content</a>
+      <a class="button is-info skipped" href="#register-my-team">Register team</a>
       <div class="navbar">
         <div class="container">
           <div class="navbar-brand">
@@ -61,8 +61,8 @@
                 </a>
               </li>
               <li class="navbar-item">
-                <a class="button is-white is-outlined" tabindex="0" href="#contact-us">
-                  <span>Contact us</span>
+                <a class="button is-white is-outlined" tabindex="0" href="#register-my-team">
+                  <span>Register team</span>
                 </a>
               </li>
             </ul>
@@ -1045,27 +1045,29 @@
     </div>
   </section>
 
-  <section class="section has-background-light" aria-labelledby="contact-us">
+  <section class="section has-background-light" aria-labelledby="register-my-team">
     <div class="container">
       <div class="section-heading has-text-centered">
-        <h2 class="title is-2" id="contact-us">Contact us</h2>
+        <h2 class="title is-2" id="register-my-team">Register my team</h2>
         <h3 class="subtitle is-5">Don't hesitate, ask anything</h3>
       </div>
 
       <form action="post" class="column is-half is-offset-one-quarter box contact-us-form" aria-labelledby="contact-us">
-        <div class="error-messages-block message is-danger visually-hidden" tabindex="-1">
+        <div class="error-messages-block message is-danger" tabindex="-1">
             <h3 class="message-header">Error! The form could not be submitted due to invalid entries</h3>
             <p>Please, fix the following fields</p>
             
             <ol class="error-messages message-body"></ol>
         </div>
-        
+        <div class="message is-success" aria-live="assertive">
+            <h3 class="success-message-block message-header">Congratulations! The form has been submitted successefully</h3>
+        </div>
         <fieldset>
           <legend>Your details</legend>
           <div class="field">
             <label for="user-name" class="label">Username</label>
             <div class="control">
-              <input class="input" id="user-name" name="user-name" type="text" placeholder="Please, fill in your username" required>
+              <input class="input" id="user-name" name="user-name" type="text" placeholder="Please, fill in your username" aria-required="true">
             </div>
             <p class="help is-danger" id="user-name-help">Username is invalid</p>
           </div>
@@ -1073,7 +1075,7 @@
           <div class="field">
             <label for="first-name" class="label">First Name</label>
             <div class="control">
-              <input class="input" id="first-name" name="first-name" type="text" placeholder="Please, fill in first name" required>
+              <input class="input" id="first-name" name="first-name" type="text" placeholder="Please, fill in first name" aria-required="true">
             </div>
             <p class="help is-danger" id="first-name-help">First name is invalid</p>
           </div>
@@ -1081,7 +1083,7 @@
           <div class="field">
               <label for="last-name" class="label">Last Name</label>
               <div class="control">
-                <input class="input" id="last-name" name="last-name" type="text" placeholder="Please, fill in last name" required>
+                <input class="input" id="last-name" name="last-name" type="text" placeholder="Please, fill in last name" aria-required="true">
               </div>
               <p class="help is-danger" id="last-name-help">Last name is invalid</p>
           </div>
@@ -1089,7 +1091,7 @@
           <div class="field">
               <label for="phone-number" class="label">Phone number</label>
               <div class="control">
-                <input class="input" id="phone-number" name="phone-number" type="text" placeholder="Please, fill in phone number" required>
+                <input class="input" id="phone-number" name="phone-number" type="tel" placeholder="Please, fill in phone number" aria-required="true">
               </div>
               <p class="help is-danger" id="phone-number-help">Phone number is invalid</p>
           </div>
@@ -1104,7 +1106,7 @@
           <div class="field">
               <label for="user-address" class="label">Address</label>
               <div class="control">
-                <input class="input" id="user-address" name="user-address" type="text" placeholder="Please, fill in address" required>
+                <input class="input" id="user-address" name="user-address" type="text" placeholder="Please, fill in address" aria-required="true">
               </div>
               <p class="help is-danger" id="user-address-help">Address is invalid</p>
           </div>
@@ -1112,7 +1114,7 @@
           <div class="field" aria-live="assertive">
               <label for="birth-year" class="label">Birth year</label>
               <div class="control">
-                <input class="input" id="birth-year" name="birth-year" type="text" placeholder="Please, fill in birth year" disabled required>
+                <input class="input" id="birth-year" name="birth-year" type="number" placeholder="Please, fill in birth year" disabled aria-required="true">
               </div>
               <p class="help is-danger" id="birth-year-help">Please, fill in birth year</p>
           </div>
@@ -1120,7 +1122,7 @@
           <div class="field">
             <label class="label" for="user-email">Email</label>
             <div class="control">
-              <input class="input" id="user-email" name="user-email" type="email" placeholder="Email input" required>
+              <input class="input" id="user-email" name="user-email" type="email" placeholder="Please, fill in your email" aria-required="true">
             </div>
             <p class="help is-danger" id="user-email-help">This email is invalid</p>
           </div>
@@ -1343,7 +1345,7 @@
   </div>
 </main>
   <script src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
   <script async src="js/custom.js"></script>
 </body>
 <footer>

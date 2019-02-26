@@ -255,6 +255,16 @@ textarea:active,
   border-color: #d2062f;
 }
 
+.error-messages-block,
+.success-message-block {
+  display: none;
+}
+
+.active-block.error-messages-block,
+.active-block.success-message-block {
+  display: block;
+}
+
 @media screen and (max-width: 1087px) {
   .navbar-menu {
     background-color: #888;
