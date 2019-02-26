@@ -64,9 +64,9 @@ function toggleTab(selectedNav, targetId) {
 
 var randomNumberField = document.getElementById("randomNumberField");
 
-setInterval(function () {
-  randomNumberField.innerHTML = Math.random();
-}, 5000);
+// setInterval(function () {
+//   randomNumberField.innerHTML = Math.random();
+// }, 5000);
 
 
 document.getElementById("topic-tablist").addEventListener("keyup", function (e) {
@@ -118,12 +118,15 @@ document.getElementById("topic-tablist").addEventListener("keyup", function (e) 
   nextTab.focus(); 
 })
 
+// contact us form
 var savedUsers = [];
 var formInputs = document.querySelectorAll(".contact-us-form input[required]:not([disabled])");
 var allInputsCollection = Array.prototype.slice.apply(document.querySelectorAll(".contact-us-form input"));
 var inputsCollection = Array.prototype.slice.apply(formInputs);
 var errorMessagesBlock = document.querySelector(".error-messages-block");
 var errorMessages = document.querySelector(".error-messages");
+var birthYearField = document.getElementById("birth-year");
+
 document.querySelector(".js-submit-button").addEventListener("click", submitForm);
 
 function submitForm (e) {
@@ -137,13 +140,22 @@ function submitForm (e) {
     var inputHelp = document.getElementById(inputHelpId);
     var inputHelpMessage = inputHelp.innerHTML;
 
+    // check fields
     if (!input.value) {
+      var inputHelpMessage = input.placeholder;
       var errorMessage = `<li><a href="#${inputName}">${inputHelpMessage}</a></li>`;
       errors += errorMessage;
       processInvalidInputAttributes(input, inputHelpId);
     } else {
-      processValidInputAttributes(input);
-      userData[inputName] = input.value;
+      if (input.name === "user-name" && _.find(savedUsers, {"user-name": input.value})) {
+        inputHelpMessage = "This username is in use yet, please choose another username";
+        errorMessage = `<li><a href="#${inputName}">${inputHelpMessage}</a></li>`;
+        errors += errorMessage;
+        processInvalidInputAttributes(input, inputHelpId);
+      } else {
+        processValidInputAttributes(input);
+        userData[inputName] = input.value;
+      }
     }
   })
   
@@ -152,9 +164,18 @@ function submitForm (e) {
     errorMessages.innerHTML = errors;
     errorMessagesBlock.focus();
   } else {
-    errorMessagesBlock.classList.add("visually-hidden");
-    savedUsers.push(userData);
-    clearInputs();
+    isExistingUser = _.find(savedUsers, {"first-name": userData["first-name"], "last-name": userData["last-name"]});
+    
+    if (isExistingUser && birthYearField.disabled) {
+      birthYearField.removeAttribute("disabled");
+      processInvalidInputAttributes(birthYearField);
+      birthYearField.focus();
+      updateCollections();
+    } else {
+      errorMessagesBlock.classList.add("visually-hidden");
+      savedUsers.push(userData);
+      clearInputs();
+    }
   }
 }
 
@@ -174,4 +195,11 @@ function clearInputs () {
   allInputsCollection.forEach(function (input) {
     input.value = '';
   })
+  birthYearField.setAttribute("disabled", true);
+  updateCollections();
+}
+
+function updateCollections () {
+  formInputs = document.querySelectorAll(".contact-us-form input[required]:not([disabled])");
+  inputsCollection = Array.prototype.slice.apply(formInputs);
 }

@@ -1065,56 +1065,56 @@
           <div class="field">
             <label for="user-name" class="label">Username</label>
             <div class="control">
-              <input class="input" id="user-name" name="user-name" type="text" placeholder="Username" required>
+              <input class="input" id="user-name" name="user-name" type="text" placeholder="Please, fill in your username" required>
             </div>
-            <p class="help is-danger" id="user-name-help">Please, fill in your username</p>
+            <p class="help is-danger" id="user-name-help">Username is invalid</p>
           </div>
 
           <div class="field">
             <label for="first-name" class="label">First Name</label>
             <div class="control">
-              <input class="input" id="first-name" name="first-name" type="text" placeholder="First name" required>
+              <input class="input" id="first-name" name="first-name" type="text" placeholder="Please, fill in first name" required>
             </div>
-            <p class="help is-danger" id="first-name-help">Please, fill in first name</p>
+            <p class="help is-danger" id="first-name-help">First name is invalid</p>
           </div>
 
           <div class="field">
               <label for="last-name" class="label">Last Name</label>
               <div class="control">
-                <input class="input" id="last-name" name="last-name" type="text" placeholder="Last name" required>
+                <input class="input" id="last-name" name="last-name" type="text" placeholder="Please, fill in last name" required>
               </div>
-              <p class="help is-danger" id="last-name-help">Please, fill in last name</p>
+              <p class="help is-danger" id="last-name-help">Last name is invalid</p>
           </div>
 
           <div class="field">
               <label for="phone-number" class="label">Phone number</label>
               <div class="control">
-                <input class="input" id="phone-number" name="phone-number" type="text" placeholder="Phone number" required>
+                <input class="input" id="phone-number" name="phone-number" type="text" placeholder="Please, fill in phone number" required>
               </div>
-              <p class="help is-danger" id="phone-number-help">Please, fill in phone number</p>
+              <p class="help is-danger" id="phone-number-help">Phone number is invalid</p>
           </div>
           
           <div class="field">
               <label for="zip-code" class="label">Zip code</label>
               <div class="control">
-                <input class="input" id="zip-code" name="zip-code" type="text" placeholder="Zip code">
+                <input class="input" id="zip-code" name="zip-code" type="text" placeholder="Please, fill in zip code">
               </div>
           </div>
 
           <div class="field">
               <label for="user-address" class="label">Address</label>
               <div class="control">
-                <input class="input" id="user-address" name="user-address" type="text" placeholder="Address" required>
+                <input class="input" id="user-address" name="user-address" type="text" placeholder="Please, fill in address" required>
               </div>
-              <p class="help is-danger" id="user-address-help">Please, fill in address</p>
+              <p class="help is-danger" id="user-address-help">Address is invalid</p>
           </div>
 
-          <div class="field">
+          <div class="field" aria-live="assertive">
               <label for="birth-year" class="label">Birth year</label>
               <div class="control">
-                <input class="input" id="birth-year" name="birth-year" type="text" placeholder="Birth year" disabled required>
+                <input class="input" id="birth-year" name="birth-year" type="text" placeholder="Please, fill in birth year" disabled required>
               </div>
-              <p class="help is-danger" id="birth-year-help">Please, fill in last name</p>
+              <p class="help is-danger" id="birth-year-help">Please, fill in birth year</p>
           </div>
 
           <div class="field">
@@ -1343,6 +1343,7 @@
   </div>
 </main>
   <script src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.core.min.js"></script>
   <script async src="js/custom.js"></script>
 </body>
 <footer>
