@@ -247,12 +247,21 @@ textarea:active,
   display: none;
 }
 
-.invalid-field .help {
+.invalid-field .help,
+.valid-field .help  {
   display: block;
 }
 
 .invalid-field input {
   border-color: #d2062f;
+}
+
+.valid-field input {
+  border-color: #23d160;
+}
+
+.valid-field .help {
+  color: #23d160;
 }
 
 .error-messages-block,

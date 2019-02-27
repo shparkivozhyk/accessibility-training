@@ -223,13 +223,6 @@ function processValidInputAttributes (input) {
   input.parentNode.parentNode.classList.remove("invalid-field");
 }
 
-function clearInputs () {
-  allInputsCollection.forEach(function (input) {
-    input.value = '';
-  })
-  birthYearField.setAttribute("disabled", true);
-  updateCollections();
-}
 
 function hideMessagesBlock ()  {
   successMessageBlock.classList.remove("active-block");
@@ -239,4 +232,62 @@ function hideMessagesBlock ()  {
 function updateCollections () {
   formInputs = document.querySelectorAll(".contact-us-form input[aria-required]:not([disabled])");
   inputsCollection = Array.prototype.slice.apply(formInputs);
+}
+
+
+//email live validation
+
+var emailField = document.getElementById("user-email");
+var emailFieldWrapper = emailField.parentNode.parentNode;
+var emailHelpMessage = document.getElementById("user-email-help");
+var lastSavedEmail;
+emailField.addEventListener("blur", validateEmailField);
+
+function validateEmailField(e) {
+  emailField.setAttribute("aria-labelledby", "user-email-help");
+  if (emailField.value !== lastSavedEmail) {
+    this.focus();
+    emailFieldWrapper.classList.add("checking-field");
+    emailFieldWrapper.classList.add("invalid-field");
+    
+    var inputHelpMessage = "The email is checking, please, wait";
+    emailHelpMessage.innerHTML = inputHelpMessage;
+
+    if (!emailField.value) {
+      emailHelpMessage.innerHTML = "Please, fill in your email";
+      emailFieldWrapper.classList.remove("checking-field");
+    }
+    
+    else if (!/[^@]+@[^\.]+\..+/g.test(emailField.value)) {
+      emailHelpMessage.innerHTML = "Email format is incorrect";
+      emailFieldWrapper.classList.remove("checking-field");
+    }
+
+    else if (_.find(savedUsers, {"user-email": emailField.value})) {
+      emailHelpMessage.innerHTML = "Such email is registered already";
+      emailFieldWrapper.classList.remove("checking-field");
+    }
+
+    else {
+      emailHelpMessage.innerHTML = "The email is valid";
+      emailFieldWrapper.classList.remove("checking-field");
+      emailFieldWrapper.classList.remove("invalid-field");
+      emailFieldWrapper.classList.add("valid-field");
+    }
+  }
+
+  if (emailFieldWrapper.classList.contains("checking-field")) {
+    this.focus();
+  }
+  
+  lastSavedEmail = emailField.value;
+}
+
+function clearInputs () {
+  allInputsCollection.forEach(function (input) {
+    input.value = '';
+  })
+  birthYearField.setAttribute("disabled", true);
+  emailFieldWrapper.classList.remove("valid-field");
+  updateCollections();
 }
