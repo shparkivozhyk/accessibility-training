@@ -127,6 +127,10 @@ var errorMessagesBlock = document.querySelector(".error-messages-block");
 var errorMessages = document.querySelector(".error-messages");
 var successMessageBlock = document.querySelector(".success-message-block");
 var birthYearField = document.getElementById("birth-year");
+var emailField = document.getElementById("user-email");
+var emailFieldWrapper = emailField.parentNode.parentNode;
+var lastSavedEmail;
+var emailHelpMessage = document.getElementById("user-email-help");
 
 document.querySelector(".js-submit-button").addEventListener("click", submitForm);
 
@@ -160,6 +164,7 @@ function submitForm (e) {
       updateCollections();
     } else {
       successMessageBlock.classList.add("active-block");
+      successMessageBlock.focus();
       savedUsers.push(userData);
       clearInputs();  
     }
@@ -183,8 +188,8 @@ function validateField (input) {
     return processError(input, inputHelpMessage);
   }
 
-  if (input.name === "user-email" && !/[^@]+@[^\.]+\..+/g.test(input.value)) {
-    var inputHelpMessage ="The email should look like example@me.com";
+  if (input.name === "user-email" && emailFieldWrapper.classList.contains("invalid-field")) {
+    var inputHelpMessage = emailHelpMessage.innerHTML;
     return processError(input, inputHelpMessage);
   }
 
@@ -236,11 +241,6 @@ function updateCollections () {
 
 
 //email live validation
-
-var emailField = document.getElementById("user-email");
-var emailFieldWrapper = emailField.parentNode.parentNode;
-var emailHelpMessage = document.getElementById("user-email-help");
-var lastSavedEmail;
 emailField.addEventListener("blur", validateEmailField);
 
 function validateEmailField(e) {
@@ -250,30 +250,34 @@ function validateEmailField(e) {
     emailFieldWrapper.classList.add("checking-field");
     emailFieldWrapper.classList.add("invalid-field");
     
-    var inputHelpMessage = "The email is checking, please, wait";
+    var inputHelpMessage = "The email is validating, please, wait";
     emailHelpMessage.innerHTML = inputHelpMessage;
 
-    if (!emailField.value) {
-      emailHelpMessage.innerHTML = "Please, fill in your email";
-      emailFieldWrapper.classList.remove("checking-field");
-    }
+    setTimeout(function () {
+      if (!emailField.value) {
+        emailHelpMessage.innerHTML = "Please, fill in your email";
+        emailFieldWrapper.classList.remove("checking-field");
+      }
+      
+      else if (!/[^@]+@[^\.]+\..+/g.test(emailField.value)) {
+        emailHelpMessage.innerHTML = "Email format is incorrect";
+        emailFieldWrapper.classList.remove("checking-field");
+      }
+  
+      else if (_.find(savedUsers, {"user-email": emailField.value})) {
+        emailHelpMessage.innerHTML = "Such email is registered already";
+        emailFieldWrapper.classList.remove("checking-field");
+      }
+  
+      else {
+        emailHelpMessage.innerHTML = "The email is valid";
+        emailFieldWrapper.classList.remove("checking-field");
+        emailFieldWrapper.classList.remove("invalid-field");
+        emailFieldWrapper.classList.add("valid-field");
+      }
+      
+    }, 1000);
     
-    else if (!/[^@]+@[^\.]+\..+/g.test(emailField.value)) {
-      emailHelpMessage.innerHTML = "Email format is incorrect";
-      emailFieldWrapper.classList.remove("checking-field");
-    }
-
-    else if (_.find(savedUsers, {"user-email": emailField.value})) {
-      emailHelpMessage.innerHTML = "Such email is registered already";
-      emailFieldWrapper.classList.remove("checking-field");
-    }
-
-    else {
-      emailHelpMessage.innerHTML = "The email is valid";
-      emailFieldWrapper.classList.remove("checking-field");
-      emailFieldWrapper.classList.remove("invalid-field");
-      emailFieldWrapper.classList.add("valid-field");
-    }
   }
 
   if (emailFieldWrapper.classList.contains("checking-field")) {
