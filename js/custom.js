@@ -166,7 +166,8 @@ function submitForm (e) {
       successMessageBlock.classList.add("active-block");
       successMessageBlock.focus();
       savedUsers.push(userData);
-      clearInputs();  
+      clearInputs();
+      lastSavedEmail = undefined;
     }
   }
 }
